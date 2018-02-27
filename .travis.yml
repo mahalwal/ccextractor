@@ -11,7 +11,14 @@ compiler:
 - clang
 
 before_install:
-- if [[ $TRAVIS_OS_NAME == 'osx' ]]; then brew install pkg-config autoconf automake libtool tesseract leptonica; fi
+- if [[ $TRAVIS_OS_NAME == 'osx' ]]; then brew update; brew outdated pkg-config || brew upgrade pkg-config;
+                                                       brew outdated autoconf || brew upgrade autoconf;
+                                                       brew outdated automake || brew upgrade automake;
+                                                       brew outdated libtool || brew upgrade libtool;
+                                                       brew outdated tesseract || brew upgrade tesseract;
+                                                       brew outdated leptonica || brew upgrade leptonica;
+fi                                                      
+                                                     
 - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then sudo apt-get install -y libcurl4-gnutls-dev tesseract-ocr tesseract-ocr-dev libleptonica-dev autoconf-archive; fi
 - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then sudo apt-get install python-distutils-extra tesseract-ocr tesseract-ocr-eng libopencv-dev libtesseract-dev libleptonica-dev python-all-dev swig libcv-dev python-opencv python-numpy python-setuptools build-essential subversion; fi
 - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then wget https://github.com/DanBloomberg/leptonica/releases/download/1.74.4/leptonica-1.74.4.tar.gz && tar xvf leptonica-1.74.4.tar.gz; cd leptonica-1.74.4; ./configure && make && sudo make install; cd ..; fi
