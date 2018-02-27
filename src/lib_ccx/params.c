@@ -24,6 +24,7 @@
 #include "hardsubx.h"
 #endif
 
+
 #ifdef _WIN32
 #define DEFAULT_FONT_PATH "C:\\Windows\\Fonts\\calibri.ttf"
 #elif __APPLE__ // MacOS
